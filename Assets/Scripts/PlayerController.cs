@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 8;
     
-    
     private Rigidbody2D rb;
 
 
@@ -19,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
+        float moveX = Input.GetAxisRaw("Horizontal") * moveSpeed;
         rb.velocity = new Vector2(moveX, rb.velocity.y);    
     }
 }
