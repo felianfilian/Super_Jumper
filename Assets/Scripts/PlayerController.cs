@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+    public Transform groundCheckPoint;
+
+    public bool isGrounded = true;
     public float moveSpeed = 8;
     public float jumpForce = 20;
-
-    private float runModificator = 1f;
+  
     private Rigidbody2D rb;
 
+    private bool canDoubleJump = false;
+    private float runModificator = 1f;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -35,7 +46,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (isGrounded)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                isGrounded = false;
+                canDoubleJump = true;
+            } else if (canDoubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                canDoubleJump = false;
+            }
+
+
         }
     }
 
@@ -48,6 +70,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             runModificator = 1f;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded=true;
         }
     }
 }
