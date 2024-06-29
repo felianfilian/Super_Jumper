@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public float moveSpeed = 8;
     public float jumpForce = 20;
-  
+
+    private Animator anim;  
     private Rigidbody2D rb;
 
     private bool canDoubleJump = false;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Run(1.7f);
         Jump();
+        AnimatePlayer();
     }
 
     public void Move()
@@ -51,14 +54,16 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 isGrounded = false;
                 canDoubleJump = true;
+          
             } else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
+               
             }
 
-
         }
+
     }
 
     public void Run(float modificator)
@@ -79,5 +84,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded=true;
         }
+    }
+
+    public void AnimatePlayer()
+    {
+        anim.SetFloat("speed", rb.velocity.x);
     }
 }
