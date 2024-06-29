@@ -59,12 +59,11 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 isGrounded = false;
                 canDoubleJump = true;
-          
+
             } else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 canDoubleJump = false;
-               
             }
 
         }
@@ -107,5 +106,14 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("ySpeed", rb.velocity.y);
+        anim.SetBool("doubleJump", !canDoubleJump);
+        if (runModificator > 1f)
+        {
+            anim.SetBool("run", true);
+        } else
+        {
+            anim.SetBool("run", false);
+        }
+        
     }
 }
