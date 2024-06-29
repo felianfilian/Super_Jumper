@@ -6,8 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    [Header("Objects")]
     public Transform groundCheckPoint;
+    public SpriteRenderer spriteRenderer;
 
+    [Header("Variables")]
     public bool isGrounded = true;
     public float moveSpeed = 8;
     public float jumpForce = 20;
@@ -15,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;  
     private Rigidbody2D rb;
 
+    private bool lookLeft = false;
     private bool canDoubleJump = false;
     private float runModificator = 1f;
 
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Run(1.7f);
         Jump();
+        FlipPlayer();
         AnimatePlayer();
     }
 
@@ -86,8 +91,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void FlipPlayer()
+    {
+        if(rb.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        } else if(rb.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+    }
+
     public void AnimatePlayer()
     {
-        anim.SetFloat("speed", rb.velocity.x);
+        anim.SetFloat("speed", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("ySpeed", rb.velocity.y);
     }
 }

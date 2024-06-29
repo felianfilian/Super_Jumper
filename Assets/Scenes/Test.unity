@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckPoint: {fileID: 0}
+  spriteRenderer: {fileID: 1614402288}
   isGrounded: 0
   moveSpeed: 8
   jumpForce: 20
