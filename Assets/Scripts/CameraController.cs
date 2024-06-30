@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     public Transform clampMin;
     public Transform clampMax;
 
-    public Camera cam;
+    private Camera cam;
     private Vector3 positionStore;
     private float halfWidth;
     private float halfHeight;
@@ -54,14 +54,19 @@ public class CameraController : MonoBehaviour
     {
         if (clampPosition) 
         {
-            float positionX = Mathf.Clamp(transform.position.x, clampMin.position.x, clampMax.position.x);
-            float positionY = Mathf.Clamp(transform.position.y, clampMin.position.y, clampMax.position.y);
+            float positionX = Mathf.Clamp(transform.position.x, clampMin.position.x + halfWidth, clampMax.position.x - halfWidth);
+            float positionY = Mathf.Clamp(transform.position.y, clampMin.position.y + halfHeight, clampMax.position.y - halfHeight);
             transform.position = new Vector3(
             positionX,
             positionY,
             transform.position.z
             );
         }
+        
+    }
+
+    private void OnDrawGizmos()
+    {
         
     }
 }
