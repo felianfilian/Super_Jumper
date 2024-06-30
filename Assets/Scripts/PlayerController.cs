@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private Animator anim;  
     private Rigidbody2D rb;
 
-    private bool lookLeft = false;
     private bool canDoubleJump = false;
     private float runModificator = 1f;
 
