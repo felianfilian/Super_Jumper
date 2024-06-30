@@ -67,6 +67,13 @@ public class CameraController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+        if (clampPosition)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(clampMin.position, new Vector3(clampMin.position.x, clampMax.position.y, 0));
+            Gizmos.DrawLine(clampMin.position, new Vector3(clampMax.position.x, clampMin.position.y, 0));
+            Gizmos.DrawLine(clampMax.position, new Vector3(clampMin.position.x, clampMax.position.y, 0));
+            Gizmos.DrawLine(clampMax.position, new Vector3(clampMax.position.x, clampMin.position.y, 0));
+        }
     }
 }
