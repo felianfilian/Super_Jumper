@@ -522,7 +522,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1349075725}
   - component: {fileID: 1349075726}
-  - component: {fileID: 1349075727}
   m_Layer: 7
   m_Name: feetCheck
   m_TagString: Untagged
@@ -590,18 +589,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.4541843}
   m_EdgeRadius: 0
---- !u!114 &1349075727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349075724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3649ff313c3e0449897d5080683176b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1614402286
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +821,7 @@ GameObject:
   - component: {fileID: 2059211495}
   - component: {fileID: 2059211494}
   - component: {fileID: 2059211493}
+  - component: {fileID: 2059211496}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -915,6 +903,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059211496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059211492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b376e1e24fc6748bc35a92d5706143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1725535823}
+  freezeVertical: 1
+  freezeHorizontal: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

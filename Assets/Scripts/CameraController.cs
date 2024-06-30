@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
 
@@ -29,6 +29,10 @@ public class CameraController : MonoBehaviour
         if (freezeVertical)
         {
             transform.position = new Vector3(transform.position.x, positionStore.y, transform.position.z);
+        }
+        if (freezeHorizontal)
+        {
+            transform.position = new Vector3(positionStore.x, transform.position.y, transform.position.z);
         }
     }
 }
