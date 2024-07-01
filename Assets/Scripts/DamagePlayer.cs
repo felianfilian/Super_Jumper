@@ -17,8 +17,5 @@ public class DamagePlayer : MonoBehaviour
         
     }
 
-    public void hurtPlayer(int dmg)
-    {
-
-    }
+    
 }
