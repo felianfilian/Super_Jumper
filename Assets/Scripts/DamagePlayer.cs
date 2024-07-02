@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
 {
-    public int damage;
+    public int damage = 1;
 
     void Start()
     {
@@ -17,5 +17,11 @@ public class DamagePlayer : MonoBehaviour
         
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            FindAnyObjectByType<PlayerHealthControl>().HurtPlayer(damage);
+        }
+    }
 }

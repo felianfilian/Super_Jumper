@@ -19,9 +19,10 @@ public class PlayerHealthControl : MonoBehaviour
         
     }
 
-    public void hurtPlayer(int dmg)
+    public void HurtPlayer(int dmg)
     {
         curretnHealth -= dmg;
+        Debug.Log(curretnHealth);
         if (curretnHealth <= 0)
         {
             curretnHealth = 0;
