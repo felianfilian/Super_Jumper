@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class PlayerHealthControl : MonoBehaviour
 {
+    public static PlayerHealthControl Instance;
+
     public int maxHealth = 5;
 
     private int curretnHealth;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
