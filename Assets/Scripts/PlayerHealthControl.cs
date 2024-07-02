@@ -6,9 +6,12 @@ public class PlayerHealthControl : MonoBehaviour
 {
     public static PlayerHealthControl Instance;
 
-    public int maxHealth = 5;
+    public int maxHealth = 6;
+    public int currentHealth;
 
-    private int curretnHealth;
+    public float invincibleTime = 2f;
+    private float invincibleCounter = 0;
+
 
     private void Awake()
     {
@@ -17,23 +20,34 @@ public class PlayerHealthControl : MonoBehaviour
 
     void Start()
     {
-        curretnHealth = maxHealth;
+        currentHealth = maxHealth;
+        UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(invincibleCounter > 0)
+        {
+            invincibleCounter -= Time.deltaTime;
+        }
         
     }
 
     public void HurtPlayer(int dmg)
     {
-        curretnHealth -= dmg;
-        Debug.Log(curretnHealth);
-        if (curretnHealth <= 0)
+        if(invincibleCounter <= 0)
         {
-            curretnHealth = 0;
-            Debug.Log("dead");
+            currentHealth -= dmg;
+            invincibleCounter = invincibleTime;
+            PlayerController.instance.anim.SetTrigger("hurt");
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                gameObject.SetActive(false);
+            }
         }
+        
+        UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
 }

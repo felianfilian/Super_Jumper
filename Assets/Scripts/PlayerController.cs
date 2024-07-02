@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    [HideInInspector]
+    public Animator anim;
+
     [Header("Objects")]
     public Transform groundCheckPoint;
     public SpriteRenderer spriteRenderer;
@@ -15,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 8;
     public float jumpForce = 20;
 
-    private Animator anim;  
+    
     private Rigidbody2D rb;
 
     private bool canDoubleJump = false;
