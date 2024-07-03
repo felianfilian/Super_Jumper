@@ -17,15 +17,18 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public float moveSpeed = 8;
     public float jumpForce = 20;
-
+    public float knockBackTime = 1f;
     
     private Rigidbody2D rb;
 
+    private bool characterControl;
     private bool canDoubleJump = false;
     private float runModificator = 1f;
+    private float knockBackCounter;
 
     private void Awake()
     {
+        characterControl = true;
         instance = this;
     }
 
@@ -39,11 +42,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Run(1.7f);
-        Jump();
-        FlipPlayer();
-        AnimatePlayer();
+        if (characterControl)
+        {
+            Move();
+            Run(1.7f);
+            Jump();
+            FlipPlayer();
+            AnimatePlayer();
+        }
+
+        if(knockBackCounter > 0)
+        {
+            knockBackCounter -= Time.deltaTime;
+            characterControl = false;
+        } else
+        {
+            characterControl= true;
+        }
     }
 
     public void Move()
@@ -96,10 +111,10 @@ public class PlayerController : MonoBehaviour
     {
         if(rb.velocity.x > 0)
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = Vector3.one;
         } else if(rb.velocity.x < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 
@@ -123,5 +138,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(0f, jumpForce * 0.5f);
         anim.SetTrigger("hurt");
+        knockBackCounter = knockBackTime;
     }
 }
