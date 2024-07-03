@@ -6032,7 +6032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 6
   currentHealth: 0
-  invincibleTime: 0
+  invincibleTime: 2
 --- !u!1 &1739038958
 GameObject:
   m_ObjectHideFlags: 0

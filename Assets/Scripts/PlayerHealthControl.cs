@@ -39,15 +39,20 @@ public class PlayerHealthControl : MonoBehaviour
         if(invincibleCounter <= 0)
         {
             currentHealth -= dmg;
-            invincibleCounter = invincibleTime;
-            PlayerController.instance.anim.SetTrigger("hurt");
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
                 gameObject.SetActive(false);
+            } else
+            {
+                invincibleCounter = invincibleTime;
+                PlayerController.instance.KnockBack();
             }
+            
         }
         
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
+
+    
 }

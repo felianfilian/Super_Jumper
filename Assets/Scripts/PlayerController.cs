@@ -118,4 +118,10 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    public void KnockBack()
+    {
+        rb.velocity = new Vector2(0f, jumpForce * 0.5f);
+        anim.SetTrigger("hurt");
+    }
 }
