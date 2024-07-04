@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
+    public bool fullHealth = false;
     public int healAmount = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,7 +16,14 @@ public class HealthPickup : MonoBehaviour
                 return;
             } else
             {
-                PlayerHealthControl.Instance.HealPlayer(healAmount);
+                if (fullHealth) 
+                {
+                    PlayerHealthControl.Instance.currentHealth = PlayerHealthControl.Instance.maxHealth;
+                }
+                else
+                {
+                    PlayerHealthControl.Instance.HealPlayer(healAmount);
+                }
                 Destroy(gameObject);
             }
         }

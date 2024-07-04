@@ -10,17 +10,24 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
 
     [Header("Objects")]
-    public Transform groundCheckPoint;
     public SpriteRenderer spriteRenderer;
 
     [Header("Variables")]
-    public bool isGrounded = true;
+    
     public float moveSpeed = 8;
     public float jumpForce = 20;
-    public float knockBackTime = 1f;
-    
+    public float knockBackTime = 0.5f;
+    public float knockBackSpeed = 5;
+
+    [Header("Ground Check")]
+    public Transform groundCheckPoint;
+    public float groundcheckRadius = 0.2f;
+    public LayerMask whatIsGround;
+
+
     private Rigidbody2D rb;
 
+    [HideInInspector] public bool isGrounded = true;
     private bool characterControl;
     private bool canDoubleJump = false;
     private float runModificator = 1f;
@@ -42,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        isGrounded = GroundCheck();
         if (characterControl)
         {
             Move();
@@ -53,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if(knockBackCounter > 0)
         {
+            rb.velocity = new Vector2(knockBackSpeed * -transform.localScale.x, rb.velocity.y);
             knockBackCounter -= Time.deltaTime;
             characterControl = false;
         } else
@@ -80,6 +89,7 @@ public class PlayerController : MonoBehaviour
             } else if (canDoubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+              
                 canDoubleJump = false;
             }
 
@@ -99,12 +109,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool GroundCheck()
     {
-        if(collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded=true;
-        }
+        return Physics2D.OverlapCircle(groundCheckPoint.position, groundcheckRadius, whatIsGround);
     }
 
     public void FlipPlayer()
@@ -136,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     public void KnockBack()
     {
-        rb.velocity = new Vector2(0f, jumpForce * 0.5f);
+        rb.velocity = new Vector2(0, jumpForce * 0.5f);
         anim.SetTrigger("hurt");
         knockBackCounter = knockBackTime;
     }

@@ -523,6 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699185138}
   - component: {fileID: 699185139}
+  - component: {fileID: 699185140}
   m_Layer: 0
   m_Name: health_pickup
   m_TagString: Untagged
@@ -575,12 +576,26 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &699185140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699185137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8616b387f55b6f44a8f326e74ff809f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 0
+  healAmount: 1
 --- !u!1 &819289320
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,6 +6131,7 @@ Transform:
   m_Children:
   - {fileID: 1614402287}
   - {fileID: 1349075725}
+  - {fileID: 2081206703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1725535824
@@ -6150,8 +6166,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012498975, y: -0.25622666}
-  m_Size: {x: 1.1999362, y: 1.5124533}
+  m_Offset: {x: 0.012498975, y: -0.2492258}
+  m_Size: {x: 1.1999362, y: 1.4984516}
   m_Direction: 0
 --- !u!114 &1725535825
 MonoBehaviour:
@@ -6166,12 +6182,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  groundCheckPoint: {fileID: 0}
   spriteRenderer: {fileID: 1614402288}
-  isGrounded: 0
   moveSpeed: 8
   jumpForce: 20
-  knockBackTime: 1
+  knockBackTime: 0.5
+  knockBackSpeed: 5
+  groundCheckPoint: {fileID: 2081206703}
+  groundcheckRadius: 0.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  isGrounded: 0
 --- !u!95 &1725535826
 Animator:
   serializedVersion: 5
@@ -6714,6 +6735,37 @@ MonoBehaviour:
   clampPosition: 1
   clampMin: {fileID: 1060622147}
   clampMax: {fileID: 655711989}
+--- !u!1 &2081206702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2081206703}
+  m_Layer: 7
+  m_Name: groundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2081206703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081206702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1725535823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
