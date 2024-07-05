@@ -21,7 +21,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealthControl.Instance.HurtPlayer(damage);
+            PlayerHealthControl.instance.HurtPlayer(damage);
         }
     }
 }

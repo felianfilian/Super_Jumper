@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealthControl : MonoBehaviour
 {
-    public static PlayerHealthControl Instance;
+    public static PlayerHealthControl instance;
 
     public int maxHealth = 6;
     public int currentHealth;
@@ -15,7 +15,7 @@ public class PlayerHealthControl : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     void Start()
@@ -54,13 +54,20 @@ public class PlayerHealthControl : MonoBehaviour
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
 
-    public void HealPlayer(int amount)
+    public void HealPlayer(int amount, bool full)
     {
-        currentHealth += amount;
-        if (currentHealth > maxHealth) 
+        if (full)
         {
             currentHealth = maxHealth;
+        } else
+        {
+            currentHealth += amount;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
         }
+        
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
     

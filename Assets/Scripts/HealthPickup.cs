@@ -11,20 +11,13 @@ public class HealthPickup : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            if(PlayerHealthControl.Instance.currentHealth >= PlayerHealthControl.Instance.maxHealth)
+            if(PlayerHealthControl.instance.currentHealth >= PlayerHealthControl.instance.maxHealth)
             {
                 return;
             } else
             {
-                if (fullHealth) 
-                {
-                    PlayerHealthControl.Instance.currentHealth = PlayerHealthControl.Instance.maxHealth;
-                }
-                else
-                {
-                    PlayerHealthControl.Instance.HealPlayer(healAmount);
-                }
-                Destroy(gameObject);
+               PlayerHealthControl.instance.HealPlayer(healAmount, fullHealth);
+               Destroy(gameObject);
             }
         }
     }
