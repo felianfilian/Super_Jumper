@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickupFull : MonoBehaviour
 {
-    public GameObject healthPickupEffectRed;
-    public int healAmount = 1;
+    public GameObject healthPickupEffectGold;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,7 +15,8 @@ public class HealthPickup : MonoBehaviour
                 return;
             } else
             {
-               Instantiate(healthPickupEffectRed, transform.position, Quaternion.identity);
+               PlayerHealthControl.instance.HealPlayerFull();
+               Instantiate(healthPickupEffectGold, transform.position, Quaternion.identity);
                Destroy(gameObject);
             }
         }
