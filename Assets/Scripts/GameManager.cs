@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        PlayerController.instance.rb.velocity = Vector2.zero;
         StartCoroutine(RespawnCo());
     }
 

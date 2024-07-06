@@ -8,6 +8,7 @@ public class PlayerHealthControl : MonoBehaviour
 
     public int maxHealth = 6;
     public int currentHealth;
+    public int lives = 3;
 
     public float invincibleTime = 2f;
     private float invincibleCounter = 0;
@@ -69,6 +70,16 @@ public class PlayerHealthControl : MonoBehaviour
     {
         currentHealth = maxHealth;
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
+    }
+
+    public void DecreaseLives(int amount)
+    {
+        lives -= amount;
+        if(lives <= 0)
+        {
+            lives = 0;
+
+        }
     }
     
 }

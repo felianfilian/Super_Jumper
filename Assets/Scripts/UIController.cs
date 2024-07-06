@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public Sprite heartHalf;
     public Sprite heartEmpty;
 
+    public Text txtLives;
 
     private void Awake()
     {
@@ -59,5 +60,10 @@ public class UIController : MonoBehaviour
            
         }
         
+    }
+
+    public void UpdateLivesUI(int lives)
+    {
+
     }
 }

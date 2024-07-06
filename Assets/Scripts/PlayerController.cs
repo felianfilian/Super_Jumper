@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public Rigidbody2D rb;
 
     [Header("Objects")]
     public SpriteRenderer spriteRenderer;
@@ -23,9 +25,6 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public float groundcheckRadius = 0.2f;
     public LayerMask whatIsGround;
-
-
-    private Rigidbody2D rb;
 
     [HideInInspector] public bool isGrounded = true;
     private bool characterControl;
