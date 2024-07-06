@@ -24,4 +24,9 @@ public class CheckpointController : MonoBehaviour
             checkpoint.DeactivateCheckpoint();
         }
     }
+
+    public void SetActiveCheckpoint(Checkpoint checkpoint)
+    {
+
+    }
 }
