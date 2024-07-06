@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
 
     public void UpdateHealthUI(int health, int maxHealth)
     {
-        int heartCounter = 0;
+        
         if(maxHealth > heartContainer.Length * 2)
         {
             maxHealth = heartContainer.Length * 2;

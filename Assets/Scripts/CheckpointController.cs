@@ -5,7 +5,11 @@ using UnityEngine;
 public class CheckpointController : MonoBehaviour
 {
     public static CheckpointController instance;
-    public Checkpoint[] checkpoints;
+    [HideInInspector]
+    public Vector3 spawnPoint;
+
+    private Checkpoint[] checkpoints;
+    
 
     private void Awake()
     {
@@ -14,7 +18,8 @@ public class CheckpointController : MonoBehaviour
 
     private void Start()
     {
-        checkpoints = FindObjectsByType<Checkpoint>(FindObjectsSortMode.None);
+        checkpoints = FindObjectsOfType<Checkpoint>();
+        spawnPoint = PlayerController.instance.transform.position;
     }
 
     public void DeactivateCheckpoints()
@@ -25,8 +30,8 @@ public class CheckpointController : MonoBehaviour
         }
     }
 
-    public void SetActiveCheckpoint(Checkpoint checkpoint)
+    public void SetSpawnPoint(Vector3 newSpawnPoint)
     {
-
+        spawnPoint = newSpawnPoint;
     }
 }

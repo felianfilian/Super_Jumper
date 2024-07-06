@@ -19,6 +19,8 @@ public class Checkpoint : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && !isActive)
         {
             CheckpointController.instance.DeactivateCheckpoints();
+            CheckpointController.instance.SetSpawnPoint(transform.position);
+            
             isActive = true;
             anim.SetBool("active", true);
         }

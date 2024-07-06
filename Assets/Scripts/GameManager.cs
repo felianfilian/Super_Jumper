@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
 
-    public PlayerController player;
+    public float respawnTime = 2f;
+    
 
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
-    void Start()
+    public void RespawnPlayer()
     {
+        StartCoroutine(RespawnCo());
+    }
+
+    private IEnumerator RespawnCo()
+    {
+        PlayerController.instance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(respawnTime);
+        PlayerController.instance.gameObject.SetActive(true);
+        PlayerController.instance.transform.position = CheckpointController.instance.spawnPoint;
+        PlayerHealthControl.instance.HealPlayerFull();
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Respawn()
-    {
-
-    }
+    
 }

@@ -42,7 +42,7 @@ public class PlayerHealthControl : MonoBehaviour
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                gameObject.SetActive(false);
+                GameManager.instance.RespawnPlayer();
             } else
             {
                 invincibleCounter = invincibleTime;
@@ -50,7 +50,6 @@ public class PlayerHealthControl : MonoBehaviour
             }
             
         }
-        
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
 
@@ -69,6 +68,7 @@ public class PlayerHealthControl : MonoBehaviour
     public void HealPlayerFull()
     {
         currentHealth = maxHealth;
+        UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
     }
     
 }
