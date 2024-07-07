@@ -8,8 +8,7 @@ public class KillPlayer : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealthControl.instance.DecreaseLives(1);
-            GameManager.instance.RespawnPlayer();
+            GameManager.instance.RespawnPlayer(true);
         }
     }
 }

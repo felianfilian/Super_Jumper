@@ -23,6 +23,7 @@ public class PlayerHealthControl : MonoBehaviour
     {
         currentHealth = maxHealth;
         UIController.instance.UpdateHealthUI(currentHealth, maxHealth);
+        UIController.instance.UpdateLivesUI(lives);
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class PlayerHealthControl : MonoBehaviour
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                GameManager.instance.RespawnPlayer();
+                GameManager.instance.RespawnPlayer(true);
             } else
             {
                 invincibleCounter = invincibleTime;
@@ -78,8 +79,9 @@ public class PlayerHealthControl : MonoBehaviour
         if(lives <= 0)
         {
             lives = 0;
-
+            GameManager.instance.GameOver();
         }
+        UIController.instance.UpdateLivesUI(lives);
     }
     
 }

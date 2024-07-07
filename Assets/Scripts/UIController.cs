@@ -1,6 +1,7 @@
 using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,10 @@ public class UIController : MonoBehaviour
     public Sprite heartHalf;
     public Sprite heartEmpty;
 
-    public Text txtLives;
+    public TMP_Text txtLives;
+
+    [Header("Screens")]
+    public GameObject gameOverScreen;
 
     private void Awake()
     {
@@ -23,7 +27,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        
+        //gameOverScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,6 +68,6 @@ public class UIController : MonoBehaviour
 
     public void UpdateLivesUI(int lives)
     {
-
+        txtLives.text = lives.ToString();
     }
 }

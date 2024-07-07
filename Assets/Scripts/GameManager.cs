@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void RespawnPlayer()
+    public void RespawnPlayer(bool liveLost)
     {
         PlayerController.instance.rb.velocity = Vector2.zero;
+        if(liveLost)
+        {
+            PlayerHealthControl.instance.DecreaseLives(1);
+        }
         StartCoroutine(RespawnCo());
     }
 
@@ -30,5 +34,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        UIController.instance.gameOverScreen.SetActive(true);
+    }
 }
